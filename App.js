@@ -1,4 +1,4 @@
-import { View,Text } from "react-native";
+import { Text } from "react-native";
 import { CustomSafeAreaView } from "./components/CustomSafeAreaView";
 
 export default function App () {
