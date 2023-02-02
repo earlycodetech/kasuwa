@@ -1,10 +1,8 @@
 import { Text } from "react-native";
-import { CustomSafeAreaView } from "./components/CustomSafeAreaView";
+import { Home } from "./screens/Home";
 
 export default function App () {
   return (
-    <CustomSafeAreaView>
-      <Text>Kasuwa parent screen</Text>
-    </CustomSafeAreaView>
+    <Home />
   )
 }
