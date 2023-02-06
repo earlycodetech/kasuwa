@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     brandName:{
         fontSize:30,
         fontWeight:'bold',
-        color:'purple',
+        color:'#7B2869',
         marginBottom:20
     },
     carouselImage:{
