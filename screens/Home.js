@@ -1,6 +1,7 @@
-import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, FlatList } from "react-native";
 import { CustomSafeAreaView } from "../components/CustomSafeAreaView";
 import { Themes } from "../assets/themes";
+import { products } from "../assets/demo-product";
 
 export function Home(){
     return(
@@ -19,13 +20,22 @@ export function Home(){
                     </TouchableOpacity>
                 </View>                
                 <View style={styles.productsList}>
-                    <TouchableOpacity style={styles.product}>
-                        <View> 
-                            <Image source={require('../assets/images/myfi.webp')} style={styles.thumbnail}/> 
-                        </View>
-                        <Text style={styles.productName}> Airtel Broadband$ Rechable MyFi </Text>
-                        <Text style={styles.productPrice}> ₦15500 </Text>
-                    </TouchableOpacity>
+                    <FlatList 
+                    data={products}
+                    renderItem={({item}) => {
+                        return (
+                            <TouchableOpacity style={styles.product}>
+                                <View style={{alignItems:'center', marginBottom:Themes.sizes[1]}}> 
+                                    <Image source={item.thumbnail} style={styles.thumbnail}/> 
+                                </View>
+                                <Text style={styles.productName}> {item.productName} </Text>
+                                <Text style={styles.productPrice}> ₦{item.price} </Text>
+                            </TouchableOpacity>
+                        )
+                    }}
+                    key = {({item}) => item.id}
+                    horizontal = {true}
+                    />
                 </View>                
             </View>
 
@@ -72,8 +82,7 @@ const styles = StyleSheet.create({
         marginTVertical:Themes.sizes[2],        
         marginHorizontal:Themes.sizes[2],
     },
-    recentDeals:{ 
-        flex:1,       
+    recentDeals:{     
         flexDirection:'row',
         justifyContent:'space-between',
         alignItems:'center',
@@ -85,16 +94,16 @@ const styles = StyleSheet.create({
         fontSize:22,
     },
     moreDeals:{
-        color:'#000'
+        color:'#FFC6D3'
     },
     sponsored:{
         flex:2.5,        
-        marginHorizontal:Themes.sizes[2],
+        paddingHorizontal:Themes.sizes[2],
+        paddingVertical:Themes.sizes[2],
     },
     productsList:{
         flex:5,
         marginTop:Themes.sizes[2],
-        paddingBottom:Themes.sizes[2],
     },
     product:{
         flex:1,
@@ -102,18 +111,19 @@ const styles = StyleSheet.create({
         padding:Themes.sizes[2],
         borderWidth: 1,
         borderColor:Themes.colors.gray400,
-        borderRadiu:10
+        borderRadius:10,
+        marginRight:Themes.sizes[3],
     },
     thumbnail:{
         height:120,
-        width:'100%',
+        width:120,
     },
     productName:{
         fontSize:Themes.fontSizePoint.title,
-        fontWeight:'bold'
     },
     productPrice:{
-        fontSize:Themes.fontSizePoint.h6,
-        fontWeight:'bold'
+        fontSize:Themes.fontSizePoint.title,
+        fontWeight:'bold',
+        marginTop:Themes.sizes[1],
     }
 })
