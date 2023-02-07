@@ -1,6 +1,7 @@
-import { View,Text,StyleSheet,Image,TouchableOpacity } from "react-native";
+import { View,Text,StyleSheet,Image,TouchableOpacity,FlatList } from "react-native";
 import { CustomSafeAreaView } from "../components/CustomSafeAreaView";
 import { Themes } from "../assets/themes";
+import { products } from "../assets/demo-products";
 
 export function Home () {
     return (
@@ -19,13 +20,22 @@ export function Home () {
                     </TouchableOpacity>
                 </View>
                 <View style={styles.productsList}>
-                    <TouchableOpacity style={styles.product}>
-                        <View style={{alignItems:'center',marginBottom:Themes.sizes[1]}}>
-                            <Image source={require('../assets/images/myfi.webp')} style={styles.thumbnail}/>
-                        </View>
-                        <Text style={styles.productName}>Airtle Broadband 4G Rechable MyFi</Text>
-                        <Text style={styles.productPrice}>₦15500</Text>
-                    </TouchableOpacity>
+                   <FlatList
+                   data={products}
+                   renderItem={({item}) => {
+                    return (
+                        <TouchableOpacity style={styles.product}>
+                            <View style={{alignItems:'center',marginBottom:Themes.sizes[1]}}>
+                                <Image source={item.thumbnail} style={styles.thumbnail}/>
+                            </View>
+                            <Text style={styles.productName}>{item.productName}</Text>
+                            <Text style={styles.productPrice}>₦{item.price}</Text>
+                        </TouchableOpacity>
+                    )
+                   }}
+                   key={({item}) => item.id}
+                   horizontal={true}
+                   showsHorizontalScrollIndicator={false}/>
                 </View>
             </View>
 
@@ -102,7 +112,8 @@ const styles = StyleSheet.create({
         padding:Themes.sizes[2],
         borderWidth:1,
         borderColor:Themes.colors.gray400,
-        borderRadius:10   
+        borderRadius:1,
+        marginRight:Themes.sizes[3]   
     },
     thumbnail:{
         height:120,
