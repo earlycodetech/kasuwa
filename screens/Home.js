@@ -128,3 +128,9 @@ const styles = StyleSheet.create({
         marginTop:Themes.sizes[1]
     },
 })
+
+/*
+1. Fetch all changes
+2. Pull from a branch to your branch
+?You commit all your current changes( git add .) (git commit -m 'some message')
+*/
