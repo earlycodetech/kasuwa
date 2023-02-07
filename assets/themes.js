@@ -1,8 +1,13 @@
 export const Themes = {
     colors: {
+      blue100:'#C3F8FF',
+      blue200:'#0081C9',
+      blue300:'#5BC0F8',
+      blue400:'#0081C9',
       purple700:'#4C3A51',
       purple500:'#774360',
       purple300:'#B25068',
+      purple100:'#FFBABA',
       orange900:'#E38B29',
       orange700:'#F1A661',
       orange500:'#FFD8A9',
