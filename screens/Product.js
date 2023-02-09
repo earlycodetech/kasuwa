@@ -1,4 +1,4 @@
-import { View,Text,StyleSheet,ScrollView,Image } from "react-native";
+import { View,Text,StyleSheet,ScrollView,Image,Dimensions } from "react-native";
 import { CustomSafeAreaView } from "../components/CustomSafeAreaView";
 import { Button } from "react-native-paper";
 import { Themes } from "../assets/themes";
@@ -67,8 +67,9 @@ const styles = StyleSheet.create({
         flexWrap:'wrap'
     },
     galleryImg:{
-        width:200,
-        height:200,
+        width:(Dimensions.get('screen').width - (Themes.sizes[2]) * 2 - 10) /2,
+        height:(Dimensions.get('screen').width - (Themes.sizes[2]) * 2 - 10) /2,
         marginBottom:Themes.sizes[2]
     }
 })
+
