@@ -2,8 +2,14 @@ import { View,Text,StyleSheet,Image,TouchableOpacity,FlatList } from "react-nati
 import { CustomSafeAreaView } from "../components/CustomSafeAreaView";
 import { Themes } from "../assets/themes";
 import { products } from "../assets/demo-products";
+import { Categories } from './Categories';
+import { Profile } from './Profile';
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { Ionicons } from "@expo/vector-icons";
 
-export function Home () {
+const Tab = createBottomTabNavigator()
+
+function HomeScreen ({navigation}) {
     return (
         <CustomSafeAreaView>
             <View style={styles.content}>
@@ -24,7 +30,8 @@ export function Home () {
                    data={products}
                    renderItem={({item}) => {
                     return (
-                        <TouchableOpacity style={styles.product}>
+                        <TouchableOpacity style={styles.product}
+                        onPress={() => navigation.navigate('Product Details')}>
                             <View style={{alignItems:'center',marginBottom:Themes.sizes[1]}}>
                                 <Image source={item.thumbnail} style={styles.thumbnail}/>
                             </View>
@@ -57,6 +64,34 @@ export function Home () {
                 </View>
             </View>
         </CustomSafeAreaView>
+    )
+}
+
+export function Home () {
+    return (
+        <Tab.Navigator 
+        screenOptions={({ route }) => ({
+            tabBarIcon: ({ focused, color, size }) => {
+              let iconName;
+  
+              if (route.name === 'Home') {
+                iconName = focused ? 'home' : 'home-outline';
+              } else if (route.name === 'Categories') {
+                iconName = focused ? 'md-file-tray-stacked' : 'ios-file-tray-stacked-outline';
+              } else if (route.name === 'Profile') {
+                iconName = focused ? 'person-circle' : 'person-circle-outline';
+              }
+
+              return <Ionicons name={iconName} size={size} color={color} />;
+            },
+            tabBarActiveTintColor: Themes.colors.blue400,
+            tabBarInactiveTintColor: 'gray',
+          })}
+        >
+            <Tab.Screen name='Home' component={HomeScreen} options={{headerShown:false}} />
+            <Tab.Screen name='Categories' component={Categories} options={{headerShown:false}}/>
+            <Tab.Screen name='Profile' component={Profile} options={{headerShown:false}}/>
+        </Tab.Navigator>
     )
 }
 
