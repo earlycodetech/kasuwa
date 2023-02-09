@@ -1,7 +1,10 @@
-import { Home } from "./screens/Home";
+import { NavigationContainer } from "@react-navigation/native"
+import { NativeStackNavigator } from "./infrastructure/NativeStackNavigator"
 
 export default function App () {
   return(
-    <Home/>
+    <NavigationContainer>
+      <NativeStackNavigator/>
+    </NavigationContainer>
   )
 }
