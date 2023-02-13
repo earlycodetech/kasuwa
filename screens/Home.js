@@ -21,7 +21,8 @@ function HomeScreen ({navigation}) {
             <View style={styles.deals}>
                 <View style={[styles.recentDeals,{backgroundColor:Themes.colors.blue100}]}>
                     <Text style={styles.dealsHeading}>Recent deals</Text>
-                    <TouchableOpacity style={styles.moreDeals}>
+                    <TouchableOpacity style={styles.moreDeals}
+                    onPress={() => navigation.navigate('Deals')}>
                         <Text>See all deals</Text>
                     </TouchableOpacity>
                 </View>
@@ -49,7 +50,8 @@ function HomeScreen ({navigation}) {
             <View style={styles.sponsored}>
                 <View style={[styles.recentDeals,{backgroundColor:Themes.colors.purple100}]}>
                     <Text style={styles.dealsHeading}>Recent deals</Text>
-                    <TouchableOpacity style={styles.moreDeals}>
+                    <TouchableOpacity style={styles.moreDeals}
+                    onPress={() => navigation.navigate('Deals')}>
                         <Text>See all deals</Text>
                     </TouchableOpacity>
                 </View>
@@ -118,7 +120,7 @@ const styles = StyleSheet.create({
         marginHorizontal:Themes.sizes[2],
     },
     recentDeals:{
-        flex:1,
+        flex:0.5,
         flexDirection:'row',
         justifyContent:'space-between',
         alignItems:'center',
@@ -127,7 +129,7 @@ const styles = StyleSheet.create({
         borderTopRightRadius:8
     },
     dealsHeading:{
-        fontSize:22
+        fontSize:18
     },
     moreDeals:{
         color:'#FFC6D3'
@@ -137,7 +139,7 @@ const styles = StyleSheet.create({
         paddingHorizontal:Themes.sizes[2],
     },
     productsList:{
-        flex:5,
+        flex:5.5,
         marginTop:Themes.sizes[2],
         paddingBottom:Themes.sizes[2]
     },
