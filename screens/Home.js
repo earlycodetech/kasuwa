@@ -6,6 +6,26 @@ import { Categories } from './Categories';
 import { Profile } from './Profile';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
+import Carousel from "react-native-reanimated-carousel";
+
+export const carouselMessages = [
+    {
+        id:'ggetet',
+        img:require('../assets/images/carousel/flash.jpg')
+    },
+    {
+        id:'yeye9',
+        img:require('../assets/images/carousel/Intel.jpg')
+    },
+    {
+        id:'gg778et',
+        img:require('../assets/images/carousel/payday.jpg')
+    },
+    {
+        id:'ppytr',
+        img:require('../assets/images/carousel/samsung.webp')
+    }
+]
 
 const Tab = createBottomTabNavigator()
 
@@ -13,9 +33,19 @@ function HomeScreen ({navigation}) {
     return (
         <CustomSafeAreaView>
             <View style={styles.content}>
-                <Image 
-                style={styles.carouselImage} 
-                source={require('../assets/images/flash.jpg')}/>
+                <Carousel
+                    loop
+                    width={400}
+                    height={120}
+                    autoPlay={true}
+                    data={carouselMessages}
+                    scrollAnimationDuration={5000}
+                    renderItem={({ index }) => (
+                        <Image 
+                        style={styles.carouselImage} 
+                        source={index.img}/>
+                    )}
+                />
             </View>
 
             <View style={styles.deals}>

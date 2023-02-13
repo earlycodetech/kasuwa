@@ -14,8 +14,8 @@ export function Deals () {
                 renderItem={({item}) => {
                     return (
                         <Card style={styles.card}>
-                            <Card.Cover source={item.thumbnail} />
                             <View style={styles.cardContent}>
+                                <Card.Cover style={styles.cardCover} source={item.thumbnail} />
                                 <Text variant="titleLarge">{item.productName}</Text>
                             </View>
                             <View style={styles.cardActions}>
@@ -49,6 +49,15 @@ const styles = StyleSheet.create({
         paddingHorizontal:Themes.sizes[1]
     },
     cardContent:{
-        paddingHorizontal:Themes.sizes[1]
+        width:300,
+        flexDirection:'row',
+        justifyContent:'space-between',
+        paddingHorizontal:Themes.sizes[1],
+        paddingTop:Themes.sizes[1]
+    },
+    cardCover:{
+        height:80,
+        width:80,
+        marginRight:Themes.sizes[2]
     }
 })
