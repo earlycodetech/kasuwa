@@ -7,25 +7,7 @@ import { Profile } from './Profile';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 import Carousel from "react-native-reanimated-carousel";
-
-export const carouselMessages = [
-    {
-        id:'ggetet',
-        img:require('../assets/images/carousel/flash.jpg')
-    },
-    {
-        id:'yeye9',
-        img:require('../assets/images/carousel/Intel.jpg')
-    },
-    {
-        id:'gg778et',
-        img:require('../assets/images/carousel/payday.jpg')
-    },
-    {
-        id:'ppytr',
-        img:require('../assets/images/carousel/samsung.webp')
-    }
-]
+import { carouselMessages } from '../assets/carousel-messages';
 
 const Tab = createBottomTabNavigator()
 
@@ -36,14 +18,14 @@ function HomeScreen ({navigation}) {
                 <Carousel
                     loop
                     width={400}
-                    height={120}
+                    height={100}
                     autoPlay={true}
                     data={carouselMessages}
                     scrollAnimationDuration={5000}
-                    renderItem={({ index }) => (
+                    renderItem={({ index,item }) => (
                         <Image 
                         style={styles.carouselImage} 
-                        source={index.img}/>
+                        source={item.img}/>
                     )}
                 />
             </View>
