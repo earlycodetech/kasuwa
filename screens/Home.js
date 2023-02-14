@@ -6,23 +6,36 @@ import { Categories } from "./Categories";
 import { Profile } from "./Profile";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
+import Carousel from "react-native-reanimated-carousel";
+import { carouselMessages } from "../assets/carousel-messages";
+
 
 const Tab = createBottomTabNavigator()
 
-function HomeScreen ({ navigation }) {
+function HomeScreen({ navigation }) {
     return (
         <CustomSafeAreaView>
-
             <View style={styles.content}>
 
-                <Image style={styles.carouselImage}
-                    source={require('../assets/images/flash.jpg')} />
+                <Carousel
+                    loop
+                    width={400}
+                    height={100}
+                    autoPlay={true}
+                    data={carouselMessages}
+                    scrollAnimationDuration={5000}
+                    renderItem={({ item }) => (
+                        <Image
+                            style={styles.carouselImage}
+                            source={item.img} />
+                    )}
+                />
             </View>
             <View style={styles.deals}>
                 <View style={[styles.recentDeals, { backgroundColor: Themes.colors.blue100 }]}>
                     <Text style={styles.dealsHeading}>Recent Deals</Text>
                     <TouchableOpacity style={styles.moreDeals}
-                    onPress={() => navigation.navigate('Deals')}>
+                        onPress={() => navigation.navigate('Deals')}>
                         <Text>See all Deals</Text>
                     </TouchableOpacity>
                 </View>
@@ -51,7 +64,7 @@ function HomeScreen ({ navigation }) {
                 <View style={[styles.recentDeals, { backgroundColor: Themes.colors.purple100 }]}>
                     <Text style={styles.dealsHeading}>Recent Deals</Text>
                     <TouchableOpacity style={styles.moreDeals}
-                     onPress={() => navigation.navigate('Deals')}>
+                        onPress={() => navigation.navigate('Deals')}>
                         <Text>See all Deals</Text>
                     </TouchableOpacity>
                 </View>
@@ -70,31 +83,31 @@ function HomeScreen ({ navigation }) {
     )
 }
 
-export function Home () {
+export function Home() {
     return (
-        <Tab.Navigator 
-        screenOptions={({ route }) => ({
-            tabBarIcon: ({ focused, color, size }) => {
-              let iconName;
-  
-              if (route.name === 'Home') {
-                iconName = focused ? 'home' : 'home-outline';
-              } else if (route.name === 'Categories') {
-                iconName = focused ? 'md-file-tray-stacked' : 'ios-file-tray-stacked-outline';
-              } else if (route.name === 'Profile') {
-                iconName = focused ? 'person-circle' : 'person-circle-outline';
-              }
+        <Tab.Navigator
+            screenOptions={({ route }) => ({
+                tabBarIcon: ({ focused, color, size }) => {
+                    let iconName;
 
-              return <Ionicons name={iconName} size={size} color={color} />;
-            },
-            tabBarActiveTintColor: Themes.colors.blue300,
-            tabBarInactiveTintColor: 'gray',
-          })}
+                    if (route.name === 'Home') {
+                        iconName = focused ? 'home' : 'home-outline';
+                    } else if (route.name === 'Categories') {
+                        iconName = focused ? 'md-file-tray-stacked' : 'ios-file-tray-stacked-outline';
+                    } else if (route.name === 'Profile') {
+                        iconName = focused ? 'person-circle' : 'person-circle-outline';
+                    }
+
+                    return <Ionicons name={iconName} size={size} color={color} />;
+                },
+                tabBarActiveTintColor: Themes.colors.blue300,
+                tabBarInactiveTintColor: 'gray',
+            })}
         >
-            <Tab.Screen name='Home' component={HomeScreen} options={{headerShown:false}} />
-            <Tab.Screen name='Categories' component={Categories} options={{headerShown:false}}/>
-            <Tab.Screen name='Profile' component={Profile} options={{headerShown:false}}/>
-           
+            <Tab.Screen name='Home' component={HomeScreen} options={{ headerShown: false }} />
+            <Tab.Screen name='Categories' component={Categories} options={{ headerShown: false }} />
+            <Tab.Screen name='Profile' component={Profile} options={{ headerShown: false }} />
+
         </Tab.Navigator>
     )
 }
@@ -122,7 +135,7 @@ const styles = StyleSheet.create({
         flex: 2.5
     },
     recentDeals: {
-        flex:0.5,
+        flex: 0.5,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -142,7 +155,8 @@ const styles = StyleSheet.create({
     },
     productsList: {
         flex: 5.5,
-        marginTop: Themes.sizes[2]
+        marginTop: Themes.sizes[2],
+        paddingBottom: Themes.sizes[2]
     },
     product: {
         flex: 1,

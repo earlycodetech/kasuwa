@@ -15,15 +15,15 @@ export function Deals() {
                     renderItem={({ item }) => {
                         return (
                             <Card style={styles.card}>
-                                <Card.Cover source={item.thumbnail} />
-                                <View style={styles.cardContent}>
+                                 <View style={styles.cardContent}>
+                                    <Card.Cover style={styles.cardCover} source={item.thumbnail} />
                                     <Text variant="titleLarge">{item.productName}</Text>
                                 </View>
                                 <View style={styles.cardActions}>
                                     <Text variant="headlineMeduim">₦{item.price}</Text>
                                     <Button mode="contained"
-                                     icon="cart" 
-                                     style={{ width: 120 }}>Order</Button>
+                                        icon="cart"
+                                        style={{ width: 120 }}>Order</Button>
                                 </View>
 
                             </Card>
@@ -40,8 +40,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: Themes.sizes[3],
         marginTop: Platform.OS == 'ios' ? Themes.sizes[3] : null
     },
-    card:{
-        marginBottom:Themes.sizes[3]
+    card: {
+        marginBottom: Themes.sizes[3]
     },
     cardActions: {
         flexDirection: 'row',
@@ -49,9 +49,20 @@ const styles = StyleSheet.create({
         paddingVertical: Themes.sizes[2],
         paddingHorizontal: Themes.sizes[1]
     },
-cardContent:{
-    paddingHorizontal:Themes.sizes[1]
-}
-    
+    cardContent: {
+        width:300,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingHorizontal: Themes.sizes[1],
+        paddingTop:Themes.sizes[1],
+        
+    },
+
+    cardCover: {
+        height: 80,
+        width: 80,
+        marginRight:Themes.sizes[2]
+    },
+
 
 })
