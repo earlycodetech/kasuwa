@@ -5,7 +5,7 @@ export const carouselMessages = [
     },
     {
         id:'yeye9',
-        img:require('../assets/images/carousel/intel.jpg')
+        img:require('../assets/images/carousel/Intel.jpg')
     },
     {
         id:'gg778et',

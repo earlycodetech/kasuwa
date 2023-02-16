@@ -4,6 +4,8 @@ import { Home } from '../screens/Home';
 import { Categories } from "../screens/Categories";
 import { Profile } from "../screens/Profile";
 import { Deals } from "../screens/Deals";
+import { Signin } from '../screens/Signin';
+import { Signup } from '../screens/Signup';
 
 const Stack = createNativeStackNavigator();
 
@@ -15,6 +17,8 @@ export function NativeStackNavigator () {
             <Stack.Screen name="Profile" component={Profile}/>
             <Stack.Screen name="Product Details" component={Product} options={{headerShown:true}}/>
             <Stack.Screen name="Deals" component={Deals} options={{headerShown:true}}/>
+            <Stack.Screen name="Sign In" component={Signin} options={{headerShown:true}}/>
+            <Stack.Screen name="Sign Up" component={Signup} options={{headerShown:true}}/>
         </Stack.Navigator>
     )
 }

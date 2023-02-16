@@ -1,4 +1,4 @@
-import { View,Text,StyleSheet,Image,TouchableOpacity,FlatList } from "react-native";
+import { View,Text,StyleSheet,Image,TouchableOpacity,FlatList,Dimensions } from "react-native";
 import { CustomSafeAreaView } from "../components/CustomSafeAreaView";
 import { Themes } from "../assets/themes";
 import { products } from "../assets/demo-products";
@@ -12,12 +12,15 @@ import { carouselMessages } from '../assets/carousel-messages';
 const Tab = createBottomTabNavigator()
 
 function HomeScreen ({navigation}) {
+    let width = Dimensions.get('screen').width;
+    width -= 32;
+
     return (
         <CustomSafeAreaView>
             <View style={styles.content}>
                 <Carousel
                     loop
-                    width={400}
+                    width={width}
                     height={100}
                     autoPlay={true}
                     data={carouselMessages}
