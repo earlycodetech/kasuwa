@@ -3,7 +3,7 @@ import { CustomSafeAreaView } from "../components/CustomSafeAreaView";
 import { Button } from "react-native-paper";
 import { Themes } from "../assets/themes";
 
-export function Profile(navigation) {
+export function Profile({navigation}) {
     return (
         <CustomSafeAreaView>
             <View style={styles.container}>
