@@ -1,4 +1,4 @@
-import { Text,IN } from "react-native";
+import { Text } from "react-native";
 
 export function Signin () {
     return (

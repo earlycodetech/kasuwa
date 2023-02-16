@@ -1,10 +1,22 @@
 import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 import { CustomSafeAreaView } from "../components/CustomSafeAreaView";
 import { Formik } from "formik";
+import * as yup from 'yup'
 import { Themes } from "../assets/themes";
 import { TextInput, Button } from "react-native-paper";
 
-export function Signup() {
+const formRules = yup.object({
+    email: yup.string('invalid characters')
+        .email('must be an email')
+        .required('This is a compulsory field'),
+
+    password: yup.string('invalid characters')
+        .min(8, 'must be up to 8 numbers')
+        .required('This is a compulsory field')
+        .oneOf([yup.ref('passwordConfirmation'), null], 'passwords must match')
+});
+
+export function Signup({navigation}) {
     return (
         <CustomSafeAreaView>
             <View style={styles.container}>
@@ -12,7 +24,7 @@ export function Signup() {
                 <Formik
                     initialValues={{ email: '', password: '', passwordConfirmation: '' }}
                     onSubmit={(event, values) => { }}
-                    validationSchema={null}>
+                    validationSchema={formRules}>
                     {({ handleChange, handleBlur, handleSubmit, values, errors, touched }) => {
                         return (
                             <View style={styles.formBlock}>
@@ -59,6 +71,12 @@ export function Signup() {
                         )
                     }}
                 </Formik>
+                <View style={styles.alreadyHaveaccount}>
+                    <Text style={styles.footerText}>Already have a Kasuwa account</Text>
+                    <TouchableOpacity onPress={() => navigation.navigate('Sign In')}>
+                        <Text style={[styles.footerText, styles.footerTextColor]}>Go to Sign in</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
 
         </CustomSafeAreaView>
@@ -77,5 +95,15 @@ const styles = StyleSheet.create({
     formBlock: {
         paddingTop: Themes.sizes[4]
     },
+    alreadyHaveaccount: {
+        flexDirection: 'row',
+        marginTop: Themes.sizes[3]
+    },
+    footerText: {
+        fontSize: Themes.fontSizePoint.title
+    },
+    footerTextColor: {
+        color: Themes.colors.blue400
+    }
 });
 
