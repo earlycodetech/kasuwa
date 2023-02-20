@@ -1,9 +1,13 @@
+import { useContext } from "react";
+import { AppContext } from "../infrastructure/AppContext";
 import { Text, View, StyleSheet } from "react-native";
 import { CustomSafeAreaView } from "../components/CustomSafeAreaView";
 import { Button } from "react-native-paper";
 import { Themes } from "../assets/themes";
 
 export function Profile({navigation}) {
+    const {IsSignin,Uid} = useContext(AppContext)
+    console.log
     return (
         <CustomSafeAreaView>
             <View style={styles.container}>

@@ -1,9 +1,13 @@
-import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
+import { useContext } from "react";
+import { AppContext } from "../infrastructure/AppContext";
+import { Text, View, StyleSheet, TouchableOpacity, Alert } from "react-native";
 import { CustomSafeAreaView } from "../components/CustomSafeAreaView";
 import { Formik } from "formik";
 import * as yup from 'yup'
 import { Themes } from "../assets/themes";
 import { TextInput, Button } from "react-native-paper";
+import { createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { auth } from "../infrastructure/Firebase.Setting";
 
 const formRules = yup.object({
     email: yup.string('invalid characters')
@@ -16,14 +20,29 @@ const formRules = yup.object({
         .oneOf([yup.ref('passwordConfirmation'), null], 'passwords must match')
 });
 
-export function Signup({navigation}) {
+export function Signup({ navigation }) {
+    const {setIsSignedin,setUid} = useContext(AppContext)
     return (
         <CustomSafeAreaView>
             <View style={styles.container}>
                 <Text style={styles.headerText}>Create a Kasuwa account</Text>
                 <Formik
                     initialValues={{ email: '', password: '', passwordConfirmation: '' }}
-                    onSubmit={(event, values) => { }}
+                    onSubmit={(values, event) => {
+                        createUserWithEmailAndPassword(auth, values.email, values.password)
+                            .then(() => {
+                                onAuthStateChanged(auth,(user) => {
+                                    setUid(user.uid);
+                                    setIsSignedin(true)
+
+                                })
+                                navigation.navigate('Profile');
+                            })
+                            .catch((e) => {
+                                Alert.alert('Error Message', 'There was a problem carrying out your request')
+                                console.log(e)
+                            })
+                    }}
                     validationSchema={formRules}>
                     {({ handleChange, handleBlur, handleSubmit, values, errors, touched }) => {
                         return (
