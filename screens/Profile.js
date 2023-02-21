@@ -98,7 +98,7 @@ export function Profile ({navigation}) {
                     <Button
                     icon='logout'
                     mode='outlined'
-                    buttonColor={Themes.colors.brown900}
+                    buttonColor={Themes.colors.brown700}
                     textColor='white'
                     style={{
                         borderRadius:8,
