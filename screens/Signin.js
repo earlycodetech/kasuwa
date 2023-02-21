@@ -1,9 +1,13 @@
-import { Text,View,StyleSheet,TouchableOpacity } from 'react-native';
+import { useContext } from 'react';
+import { AppContext } from '../infrastructure/AppContext';
+import { Text,View,StyleSheet,TouchableOpacity,Alert } from 'react-native';
 import { CustomSafeAreaView } from '../components/CustomSafeAreaView';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import { Themes } from '../assets/themes';
 import { TextInput,Button } from 'react-native-paper';
+import { signInWithEmailAndPassword,onAuthStateChanged } from 'firebase/auth';
+import { auth } from '../infrastructure/Firebase.settings';
 
 const formRules = yup.object({
     email:yup.string('invalid characters')
@@ -15,6 +19,8 @@ const formRules = yup.object({
 });
 
 export function Signin ({navigation}) {
+    const {setIsSignedIn,setUid} = useContext(AppContext);
+
     return (
         <CustomSafeAreaView>
             <View style={styles.container}>
@@ -22,7 +28,20 @@ export function Signin ({navigation}) {
 
                 <Formik
                 initialValues={{email:'',password:'',passwordConfirmation:''}}
-                onSubmit={(event,values) => {}}
+                onSubmit={(values,event) => {
+                    signInWithEmailAndPassword(auth,values.email,values.password)
+                    .then(() => {
+                        onAuthStateChanged(auth,(user) => {
+                            setUid(user.uid);
+                            setIsSignedIn(true);
+                        });
+                        navigation.navigate('Profile');
+                    })
+                    .catch((e) => {
+                        Alert.alert('Error Message','There was a problem carrying your request.');
+                        console.log(e)
+                    });
+                }}
                 validationSchema={formRules}>
                     {({handleChange, handleBlur, handleSubmit, values, errors,touched}) => {
                         return (

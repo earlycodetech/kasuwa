@@ -6,6 +6,7 @@ import { Button } from 'react-native-paper';
 import { Themes } from '../assets/themes';
 import { signOut } from '@firebase/auth';
 import { auth } from '../infrastructure/Firebase.settings';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export function Profile ({navigation}) {
     const {setIsSignedIn,isSignIn,uid,setUid} = useContext(AppContext);
@@ -87,6 +88,26 @@ export function Profile ({navigation}) {
                         <Text style={{fontSize:28,color:'#0F0E0E',fontWeight:'600'}}>Account Type</Text>
                         <Text style={{fontSize:28,color:'#0F0E0E',fontWeight:'600'}}>Buyer</Text>
                     </View>
+
+                    <View style={styles.actions}>
+                        <View style={styles.actionsRow}>
+                            <TouchableOpacity style={styles.action}>
+                                <Text style={styles.actionText}>Add</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.action}>
+                                <Text style={styles.actionText}>Listings</Text>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={styles.actionsRow}>
+                            <TouchableOpacity style={styles.action}>
+                                <Text style={styles.actionText}>Sales</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.action}>
+                                <Text style={styles.actionText}>Reports</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+
                     <Button
                     icon='logout'
                     mode='outlined'
@@ -138,5 +159,26 @@ const styles = StyleSheet.create({
     infoText:{
         fontSize:Themes.fontSizePoint.title,
         textAlign:'center'
+    },
+    actions:{
+        flexDirection:'column',
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    actionsRow:{
+        flexDirection:'row',
+        justifyContent:'space-between',
+        alignItems:'center'
+    },
+    action:{
+        width:200,
+        height:200,
+        justifyContent:'center',
+        alignItems:'center',
+        backgroundColor:Themes.colors.brown300,
+        borderRadius:10
+    },
+    actionText:{
+        fontSize:Themes.fontSizePoint.title
     }
 })
