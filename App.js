@@ -1,10 +1,12 @@
 import { NavigationContainer } from "@react-navigation/native"
 import { NativeStackNavigator } from "./infrastructure/NativeStackNavigator"
-
+import { AppProvider } from "./components/AppContext"
 export default function App () {
   return (
-    <NavigationContainer>
+    <AppProvider>
+      <NavigationContainer>
       <NativeStackNavigator/>
     </NavigationContainer>
+    </AppProvider>
   )
 }
