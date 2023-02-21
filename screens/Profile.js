@@ -1,12 +1,11 @@
 import { useContext } from 'react';
 import { AppContext } from '../infrastructure/AppContext';
-import { Text,View,StyleSheet } from 'react-native';
+import { Text,View,StyleSheet,TouchableOpacity } from 'react-native';
 import { CustomSafeAreaView } from '../components/CustomSafeAreaView';
 import { Button } from 'react-native-paper';
 import { Themes } from '../assets/themes';
 import { signOut } from '@firebase/auth';
 import { auth } from '../infrastructure/Firebase.settings';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export function Profile ({navigation}) {
     const {setIsSignedIn,isSignIn,uid,setUid} = useContext(AppContext);
@@ -78,7 +77,8 @@ export function Profile ({navigation}) {
 
                     <View style={styles.actions}>
                         <View style={styles.actionsRow}>
-                            <TouchableOpacity style={styles.action}>
+                            <TouchableOpacity style={styles.action}
+                            onPress={() => navigation.navigate('Add Product')}>
                                 <Text style={styles.actionText}>Add</Text>
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.action}>
