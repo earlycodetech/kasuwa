@@ -28,65 +28,52 @@ export function Profile ({navigation}) {
                 ?
                 <>
                     <View style={{
-                        width:98,
-                        height:98,
-                        borderRadius:100,
-                        borderWidth:8,
-                        borderColor:'#16FF00',
-                        justifyContent:'center',
-                        alignItems:'center',
-                        marginBottom:16
-                    }}>
-                        <View style={{
-                            width:94,
-                            height:94,
-                            borderRadius:100,
-                            backgroundColor:'#C9F4AA'
-                        }}></View>
-                    </View> 
-                    <View style={{
                         width:'100%',
                         flexDirection:'row',
                         justifyContent:'space-between',
+                        alignItems:'center',
                         borderBottomWidth:1,
                         borderBottomColor:'#DDDDDD',
                         paddingVertical:16
                         }}>
                         <Text style={{fontSize:28,color:'#0F0E0E',fontWeight:'600'}}>Last name</Text>
-                        <Text style={{fontSize:28,color:'#0F0E0E',fontWeight:'600'}}>Nnamani</Text>
+                        <Text style={{fontSize:18,color:'#0F0E0E',fontWeight:'600'}}>Nnamani</Text>
                     </View>
                     <View style={{
                         width:'100%',
                         flexDirection:'row',
                         justifyContent:'space-between',
+                        alignItems:'center',
                         borderBottomWidth:1,
                         borderBottomColor:'#DDDDDD',
                         paddingVertical:16
                         }}>
                         <Text style={{fontSize:28,color:'#0F0E0E',fontWeight:'600'}}>First name</Text>
-                        <Text style={{fontSize:28,color:'#0F0E0E',fontWeight:'600'}}>Kenneth</Text>
+                        <Text style={{fontSize:18,color:'#0F0E0E',fontWeight:'600'}}>Kenneth</Text>
                     </View>
                     <View style={{
                         width:'100%',
                         flexDirection:'row',
                         justifyContent:'space-between',
+                        alignItems:'center',
                         borderBottomWidth:1,
                         borderBottomColor:'#DDDDDD',
                         paddingVertical:16
                         }}>
                         <Text style={{fontSize:28,color:'#0F0E0E',fontWeight:'600'}}>Email</Text>
-                        <Text style={{fontSize:28,color:'#0F0E0E',fontWeight:'600'}}>ken.nnamani@gmail.com</Text>
+                        <Text style={{fontSize:18,color:'#0F0E0E',fontWeight:'600'}}>ken.nnamani@gmail.com</Text>
                     </View>
                     <View style={{
                         width:'100%',
                         flexDirection:'row',
                         justifyContent:'space-between',
+                        alignItems:'center',
                         borderBottomWidth:1,
                         borderBottomColor:'#DDDDDD',
                         paddingVertical:16
                         }}>
                         <Text style={{fontSize:28,color:'#0F0E0E',fontWeight:'600'}}>Account Type</Text>
-                        <Text style={{fontSize:28,color:'#0F0E0E',fontWeight:'600'}}>Buyer</Text>
+                        <Text style={{fontSize:18,color:'#0F0E0E',fontWeight:'600'}}>Buyer</Text>
                     </View>
 
                     <View style={styles.actions}>
@@ -161,24 +148,29 @@ const styles = StyleSheet.create({
         textAlign:'center'
     },
     actions:{
+        width:'100%',
         flexDirection:'column',
         justifyContent:'center',
-        alignItems:'center'
+        alignItems:'center',
+        marginTop:Themes.sizes[3]
     },
     actionsRow:{
+        width:'100%',
         flexDirection:'row',
-        justifyContent:'space-between',
-        alignItems:'center'
+        justifyContent:'space-evenly',
+        alignItems:'center',
+        marginBottom:Themes.sizes[3]
     },
     action:{
-        width:200,
-        height:200,
+        width:160,
+        height:120,
         justifyContent:'center',
         alignItems:'center',
-        backgroundColor:Themes.colors.brown300,
+        backgroundColor:Themes.colors.brown900,
         borderRadius:10
     },
     actionText:{
-        fontSize:Themes.fontSizePoint.title
+        fontSize:Themes.fontSizePoint.title,
+        color:Themes.colors.brown300
     }
 })
